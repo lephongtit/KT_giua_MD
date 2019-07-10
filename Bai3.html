@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+      <script>
+          let Tivi=function (currentchannel,volume,status) {
+              this.currentChannel=currentchannel;
+              this.volume=volume;
+              this.status=status;
+
+              this.getCurrentChannel=function () {
+                  return this.currentChannel;
+              };
+              this.getVolume=function () {
+                  return this.volume;
+              };
+              this.getStatus=function () {
+                  return this.status;
+              };
+
+              this.setCurrentChannel=function (currentchannel) {
+                  this.currentChannel=currentchannel;
+              };
+              this.setVolume=function (volume) {
+                  this.volume=volume;
+              };
+              this.setStatus=function (status) {
+                  this.status=status;
+              };
+
+              this.channelControl=function (numberChannel) {
+                  this.currentChannel=numberChannel;
+              };
+              this.volumeControl=function (numberVolume) {
+                  this.volume+=numberVolume;
+              };
+          };
+
+          let Remote=function (id) {
+              this.id=id;
+
+              this.getId=function () {
+                  return this.id;
+              };
+              this.setId=function (id) {
+                  this.id=id;
+              };
+
+              this.channelControl=function (tivi,numberChannal) {
+                  tivi.channelControl(numberChannal);
+              };
+              this.volumeControl=function (tivi,numberVolume) {
+                 tivi.volumeControl(numberVolume);
+              };
+              this.onOff=function (tivi) {
+                  tivi.status = !tivi.status;
+              };
+          };
+
+          let tiviSamSung=new Tivi(7,25,false);
+          let remoteSamSung=new Remote(123);
+          if(tiviSamSung.getStatus()===false){
+              remoteSamSung.onOff(tiviSamSung)
+              alert("Tivi đang bật!")
+          };
+          tiviSamSung.channelControl(7);
+          alert(" Tivi đang ở kênh "+ tiviSamSung.getCurrentChannel());
+          remoteSamSung.channelControl(tiviSamSung,3);
+          alert(" Tivi chuyến đến kênh "+ tiviSamSung.getCurrentChannel());
+          remoteSamSung.volumeControl(tiviSamSung,2);
+          alert("Âm lượng tivi hiện tại: "+tiviSamSung.getVolume());
+          remoteSamSung.onOff(tiviSamSung);
+          alert("Tivi đã tắt");
+      </script>
+
+</body>
+</html>

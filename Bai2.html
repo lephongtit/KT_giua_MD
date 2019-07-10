@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+      <script>
+          let Rat=function (name,weight,speed,status) {
+              this.name=name;
+              this.weight=weight;
+              this.speed=speed;
+              this.status=status;
+
+              this.getName=function () {
+                  return this.name;
+              };
+              this.getWeight=function () {
+                  return this.weight;
+              };
+              this.getSpeed=function () {
+                  return this.speed;
+              };
+              this.getStatus=function () {
+                  return this.status;
+              };
+
+              this.setName=function (name) {
+                  this.name=name;
+              };
+              this.setWeight=function (weight) {
+                  this.weight=weight;
+              };
+              this.setSpeed=function (speed) {
+                  this.speed=speed;
+              };
+              this.setStatus=function (status) {
+                  this.status=status;
+              };
+
+              this.speakRat=function () {
+                  alert( this.name+": chít chít!")
+              };
+              
+          };
+
+          let Cat=function (name,weight,maxSpeed) {
+              this.name=name;
+              this.weight=weight;
+              this.maxSpeed=maxSpeed;
+
+              this.getName=function () {
+                  return this.name;
+              };
+              this.getWeight=function () {
+                  return this.weight;
+              };
+              this.getMaxSpeed=function () {
+                  return this.maxSpeed;
+              };
+
+              this.setName=function (name) {
+                  this.name=name;
+              };
+              this.setWeight=function (weight) {
+                  this.weight=weight;
+              };
+              this.setMaxSpeed=function (maxSpeed) {
+                  this.maxSpeed=maxSpeed;
+              };
+              this.speakCat=function () {
+                  alert(this.name+ ": Meo meo!");
+              };
+              this.catchRat=function (rat) {
+                  if (rat.getSpeed()<this.maxSpeed ){
+                      return true;
+                  } else {
+                      return false;
+                  }
+              };
+              this.eatRat=function (rat) {
+                  if (rat.status){
+                      this.weight+=rat.getWeight();
+                  } else {
+                      alert("Không thể ăn được!")
+                  }
+              };
+
+          };
+
+          let rat1 = new Rat("Jerry",20,10,false);
+          let cat1= new  Cat("Tom",50,20);
+          cat1.speakCat();
+          rat1.speakRat();
+          if(cat1.catchRat(rat1)){
+              cat1.eatRat(rat1);
+              alert( cat1.getName()+ " đã bắt được " + rat1.getName()+ "----Cân nặng hiện tại: "+  cat1.getWeight())
+          }else {
+              alert(cat1.getName()+" không bắt được "+rat1.getName()+"!")
+          }
+
+
+      </script>
+</body>
+</html>
